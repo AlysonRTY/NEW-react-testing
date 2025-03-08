@@ -15,6 +15,31 @@ function MyButton() {
     
   );
 }
+const products1 = [
+  { title: 'Cabbage', id: 1 },
+  { title: 'Garlic', id: 2 },
+  { title: 'Apple', id: 3 },
+];
+const products2 = [
+  { title: 'Cabbage', isFruit: false, id: 1 },
+  { title: 'Garlic', isFruit: false, id: 2 },
+  { title: 'Apple', isFruit: true, id: 3 },
+];
+const listItems1 = products1.map(product =>
+  <li key={product.id}>
+    {product.title}
+  </li>
+);
+const listItems2 = products2.map(product =>
+    <li
+      key={product.id}
+      style={{
+        color: product.isFruit ? 'magenta' : 'darkgreen'
+      }}
+    >
+      {product.title}
+    </li>
+  );
 
 function App() {
   const [count, setCount] = useState(0)
@@ -24,6 +49,8 @@ function App() {
       <MyButton />
       <MyButton />
       <div>
+        <ul>{listItems1}</ul>
+        <ul>{listItems2}</ul>
 
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
