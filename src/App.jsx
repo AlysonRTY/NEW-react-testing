@@ -39,13 +39,17 @@ const listItems2 = products2.map(product =>
     >
       {product.title}
     </li>
-  );
+);
 
 function App() {
   const [count, setCount] = useState(0)
 
+  
+
   return (
     <>
+      <h1>Hello, World!</h1>
+      <p>Welcome to my very simple React app.</p>
       <MyButton />
       <MyButton />
       <div>
@@ -71,6 +75,7 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+     
     </>
   )
 }
