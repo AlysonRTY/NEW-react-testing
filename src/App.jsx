@@ -2,12 +2,15 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import React from 'react';
+import Logo from './images/logo.png';
+import background from './images/background.png';
 
 
 
 
 
-
+console.log(Logo);
 
 
 
@@ -52,7 +55,7 @@ function App() {
   
   
 
-  const charInfo = data.filter((person) => {
+  const charInfo = data.filter((person, index) => {
     return search.toLowerCase() === " " ? person : person.name.toLowerCase().includes(search)
   }).map(person =>
     <li key={person.id}>
@@ -73,43 +76,49 @@ function App() {
   
 
 
-// const flip = data.forEach((person) => {
-// <li key={person.id1}>
-//     <div class="flip-card">
-//   <div class="flip-card-inner">
-//       <div class="flip-card-front">
-//         <img
-//         src={person.image}
-//           alt={person.name}
-//         />
-//     </div>
-//     <div class="flip-card-back">
-//         <h1>{person.name}</h1>
-//       <p>Architect & Engineer</p>
-//       <p>We love that guy</p>
-//     </div>
-//   </div>
-// </div>
 
-//     </li>
-// })
 
   
    
-      const flip = data.map((person, index) => (
-        <div className="flip-card" key={index}>
-          <div className="flip-card-inner">
-            <div className="flip-card-front">
-              <img src={person.image} alt={person.name} style={{ width: '300px', height: '300px' }}/>
-            </div>
-            <div className="flip-card-back">
-              <h1>{person.name}</h1>
-              <p>{person.gender}</p>
-              <p>{person.species}</p>
-            </div>
-          </div>
+      // const flip = data.map((person, index) => (
+      //   <div className="flip-card" key={index}>
+      //     <div className="flip-card-inner">
+      //       <div className="flip-card-front">
+      //         <img src={person.image} alt={person.name} style={{ width: '300px', height: '300px' }}/>
+      //       </div>
+      //       <div className="flip-card-back">
+      //         <h1>{person.name}</h1>
+      //         <p>{person.gender}</p>
+      //         <p>{person.species}</p>
+      //       </div>
+      //     </div>
+      //   </div>
+  // ))
+  
+
+
+  const flip = data
+  .filter((person) => {
+    if (search.trim() === "") {
+      return true;
+    }
+    return person.name.toLowerCase().includes(search.toLowerCase());
+  })
+  .map((person, index) => (
+    <div className="flip-card" key={index}>
+      <div className="flip-card-inner">
+        <div className="flip-card-front">
+          <img src={person.image} alt={person.name}/>
         </div>
-      ))
+        <div className="flip-card-back">
+          <h1>{person.name}</h1>
+          <p>{person.gender}</p>
+          <p>{person.species}</p>
+        </div>
+      </div>
+    </div>
+  ));
+
     
 
   
@@ -117,14 +126,17 @@ function App() {
 
     return (
       <>
+        <div className="background-container"></div>
+        {/* <img className="logoPicture" src={Logo} alt="My Picture" /> */}
+        <br />
         <Form.Control onChange={(e) => setSearch(e.target.value)}  type="text" placeholder="Name" />
       <br />
-        <h1>Hello Friends!</h1>
+        {/* <h1>Hello Friends!</h1>
         <p>Welcome to my very simple React app.</p>
         <MyButton count={count} onClick={handleClick} /><br />
         <MyButton count={count} onClick={handleClick} />
         <MyButton count={count} onClick={handleClick} />
-        <MyButton />
+        <MyButton /> */}
         {/* <MyButton /><br /><MyButton /><br /><MyButton /> */}
         {/* {data.map((element) => {
         return (
@@ -145,6 +157,7 @@ function App() {
         {/* <ul className="no-bullets">{charInfo}</ul> */}
         <br />
         <ul className="no-bullets">{flip}</ul>
+        
 
 
         

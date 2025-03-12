@@ -5,9 +5,31 @@
   text-align: center;
 }
 
+.background-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("./images/background.png");
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}
+
+/* .logoPicture {
+  width: 500px;
+  height: auto;
+} */
 .no-bullets {
   list-style-type: none;
-  padding-left: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
 }
 /* for flip design */
 
