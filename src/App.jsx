@@ -4,7 +4,10 @@ import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import Logo from './images/logo.png';
-import background from './images/background.png';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+
+
 
 
 
@@ -18,26 +21,29 @@ console.log(Logo);
 
 
 
-function MyButton({ count, onClick }) {
+// function MyButton({ count, onClick }) {
   // const [count, setCount] = useState(0);
   // function handleClick() {
   //   setCount(count + 1);
   // }
-  return (
-    <button onClick={onClick}>
-      Clicked {count} times
-    </button>
-  )
-}
+//   return (
+//     <button onClick={onClick}>
+//       Clicked {count} times
+//     </button>
+//   )
+// }
 function App() {
   const [count, setCount] = useState(0);
   const [data, setData] = useState([])
   const [search, setSearch] = useState(" ")
+  const [modalShow, setModalShow] = useState(false);
+  const [selectedPerson, setSelectedPerson] = useState(null);
 
 
-  function handleClick() {
-    setCount(count + 1);
-  }
+
+  // function handleClick() {
+  //   setCount(count + 1);
+  // }
 
   useEffect(() => {
     const fetchData = () => {
@@ -96,7 +102,7 @@ function App() {
   // ))
   
 
-
+// original function
   const flip = data
   .filter((person) => {
     if (search.trim() === "") {
@@ -112,14 +118,49 @@ function App() {
         </div>
         <div className="flip-card-back">
           <h1>{person.name}</h1>
-          <p>{person.gender}</p>
-          <p>{person.species}</p>
+          {/* <p>{person.gender}</p>
+          <p>{person.species}</p> */}
+          <br />
+          <br />
+          <br />
+          <br />
+
+           <Button
+            variant="primary"
+            onClick={() => {
+              setSelectedPerson(person);
+              setModalShow(true);
+            }}
+          >
+            More Info
+          </Button>
         </div>
       </div>
     </div>
   ));
 
-    
+    function CharacterModal({ show, onHide, person }) {
+  return (
+    <Modal show={show} onHide={onHide} centered>
+      <Modal.Header closeButton>
+        <Modal.Title>{person?.name}</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <img src={person?.image} alt={person?.name} />
+        <p><strong>Gender:</strong> {person?.gender}</p>
+        <p><strong>Species:</strong> {person?.species}</p>
+        <p><strong>Status:</strong> {person?.status}</p>
+        <p><strong>Origin:</strong> {person?.origin.name}</p>
+        <p><strong>Location:</strong> {person?.location.name}</p>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={onHide}>
+          Close
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+}
 
   
   
@@ -156,9 +197,16 @@ function App() {
       
         {/* <ul className="no-bullets">{charInfo}</ul> */}
         <br />
-        <ul className="no-bullets">{flip}</ul>
+        {/* <ul className="no-bullets">{flip}</ul> */}
         
-
+<div className="no-bullets">
+    {flip}
+    <CharacterModal
+      show={modalShow}
+      onHide={() => setModalShow(false)}
+      person={selectedPerson}
+    />
+  </div>
 
         
 
