@@ -17,10 +17,10 @@
   z-index: -1;
 }
 
-/* .logoPicture {
+.logoPicture {
   width: 500px;
   height: auto;
-} */
+}
 .no-bullets {
   list-style-type: none;
   display: flex;

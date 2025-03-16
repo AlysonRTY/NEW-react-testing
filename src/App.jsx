@@ -152,6 +152,7 @@ function App() {
 
 
 
+      <img className="logoPicture" src={Logo} alt="Logo" />
 
       <div className="background-container"></div>
       {/* <img className="logoPicture" src={Logo} alt="My Picture" /> */}
