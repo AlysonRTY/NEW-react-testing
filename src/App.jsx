@@ -1,20 +1,15 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, StrictMode } from 'react'
 import './App.css'
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Logo from './images/logo.png';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-// import Page1 from "./pages/Page1"
+// import { createBrowserRouter, RouterProvidor } from 'react-router-dom';
 // import Page2 from "./pages/Page2"
 // import Page3 from "./pages/Page3"
 // import Page4 from "./pages/Page4"
 // import NoPage from "./pages/NoPage"
-
-
-
-
 
 
 
@@ -108,7 +103,7 @@ function App() {
   // ))
 
 
-  // original function
+  // original function (used memo)
   const filtererCharacters = data.filter((person) => {
     if (search === "") {
       return true;
@@ -155,36 +150,9 @@ function App() {
       <img className="logoPicture" src={Logo} alt="Logo" />
 
       <div className="background-container"></div>
-      {/* <img className="logoPicture" src={Logo} alt="My Picture" /> */}
       <br />
       <Form.Control onChange={(e) => setSearch(e.target.value)} type="text" placeholder="Name" />
       <br />
-      {/* <h1>Hello Friends!</h1>
-        <p>Welcome to my very simple React app.</p>
-        <MyButton count={count} onClick={handleClick} /><br />
-        <MyButton count={count} onClick={handleClick} />
-        <MyButton count={count} onClick={handleClick} />
-        <MyButton /> */}
-      {/* <MyButton /><br /><MyButton /><br /><MyButton /> */}
-      {/* {data.map((element) => {
-        return (
-          <div key={element.name}>
-            <p>{element.name}</p>
-            </div>
-        )
-      })} */}
-      {/* {data.map((element) => {
-        return (
-          <li key={element.data}>
-            <p>{element.name}</p>
-              <img src={element.image}></img>   
-            </li>
-        )
-      })} */}
-
-      {/* <ul className="no-bullets">{charInfo}</ul> */}
-      <br />
-      {/* <ul className="no-bullets">{flip}</ul> */}
       <div className="no-bullets">
         {filtererCharacters.map(person => {
           return (
@@ -199,7 +167,7 @@ function App() {
                   <br />
                   <br />
                   <br />
-
+                  {/* flex container */}
                   <Button
                     variant="primary"
                     onClick={() => {
